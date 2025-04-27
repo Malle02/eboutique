@@ -1,0 +1,115 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mandingue-Chic | Accueil{% endblock %}
+
+{% block body %}
+<!-- 🌟 Bannière principale -->
+<section class="relative bg-cover bg-center h-screen flex items-center justify-center text-white" >
+    <div class="text-center bg-black bg-opacity-50 p-10 rounded-lg">
+        <h1 class="text-5xl font-bold">L'élégance mandingue à portée de clic</h1>
+        <p class="text-lg mt-4">Découvrez des créations authentiques inspirées de la culture mandingue.</p>
+        <a href="{{ path('product_list') }}" class="mt-6 inline-block bg-yellow-500 text-black py-3 px-6 rounded-lg text-lg font-bold hover:bg-yellow-600 transition">
+            Découvrir la collection
+        </a>
+    </div>
+</section>
+
+<!-- 🏷 Catégories -->
+<section class="py-16 text-center">
+    <h2 class="text-4xl font-bold mb-10">Nos catégories phares</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 px-10">
+        <div class="relative group">
+            <img src="{{ asset('images/hommes.webp') }}" alt="Hommes" class="w-full rounded-lg shadow-lg">
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+
+                <a href="{{ path('category_show', {slug: 'hommes'}) }}" class="text-white text-xl font-bold bg-yellow-500 px-4 py-2 rounded-lg">Voir Hommes</a>
+            </div>
+        </div>
+        <div class="relative group">
+            <img src="{{ asset('images/femmes.webp') }}" alt="Femmes" class="w-full rounded-lg shadow-lg">
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                <a href="{{ path('category_show', {slug: 'femmes'}) }}" class="text-white text-xl font-bold bg-yellow-500 px-4 py-2 rounded-lg">Voir Femmes</a>
+            </div>
+        </div>
+        <div class="relative group">
+            <img src="{{ asset('images/accessoires.webp') }}" alt="Accessoires" class="w-full rounded-lg shadow-lg">
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                <a href="{{ path('category_show', {slug: 'accessoires'}) }}" class="text-white text-xl font-bold bg-yellow-500 px-4 py-2 rounded-lg">Voir Accessoires</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 🛍 Produits Best-Sellers -->
+<section class="py-16 bg-gradient-to-b from-[#f8f1e1] to-[#e2c799]">
+    <h2 class="text-5xl font-extrabold text-center mb-12 text-gray-800">🔥 Nos Best-Sellers 🔥</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 px-10">
+        {% for product in products %}
+            <div class="bg-white rounded-lg shadow-xl p-6 text-center transform transition duration-300 hover:scale-105 hover:shadow-2xl group">
+                
+                <!-- Effet Image Zoom -->
+                <div class="overflow-hidden rounded-md">
+                    <img src="{{ asset('uploads/products/' ~ product.image) }}" alt="{{ product.name }}"
+                         class="w-full h-64 object-cover rounded-md transition-transform duration-300 group-hover:scale-110">
+                </div>
+
+                <h3 class="text-2xl font-bold mt-4 text-gray-800 group-hover:text-yellow-500 transition duration-300">
+                    {{ product.name }}
+                </h3>
+
+                <p class="text-gray-600 text-lg mt-2">{{ (product.price / 100)|number_format(2, ',', ' ') }} €</p>
+
+                <!-- Bouton CTA avec Effet -->
+                <a href="{{ path('product_detail', {id: product.id}) }}"
+                   class="inline-block bg-yellow-500 text-black font-semibold py-3 px-6 rounded-lg mt-5 shadow-lg hover:bg-yellow-600 hover:shadow-xl transition duration-300">
+                    Voir le produit
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+
+
+<!-- 🌍 Pourquoi choisir Mandingue-Chic -->
+<section class="py-16 text-center">
+    <h2 class="text-4xl font-bold mb-10">Pourquoi nous choisir ?</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 px-10">
+        <div class="p-6 bg-white rounded-lg shadow-lg">
+            <h3 class="text-2xl font-bold">🌿 Produits Authentiques</h3>
+            <p class="text-gray-500 mt-2">Des vêtements inspirés de la culture mandingue, fabriqués avec passion.</p>
+        </div>
+        <div class="p-6 bg-white rounded-lg shadow-lg">
+            <h3 class="text-2xl font-bold">🚚 Livraison Rapide</h3>
+            <p class="text-gray-500 mt-2">Expédition sous 48h et livraison offerte dès 50€ d'achat.</p>
+        </div>
+        <div class="p-6 bg-white rounded-lg shadow-lg">
+            <h3 class="text-2xl font-bold">💳 Paiement Sécurisé</h3>
+            <p class="text-gray-500 mt-2">Commandez en toute sécurité avec nos solutions de paiement fiables.</p>
+        </div>
+    </div>
+</section>
+
+<!-- 📩 Newsletter -->
+<section class="py-16 bg-gradient-to-b from-[#f8f1e1] to-[#e2c799] text-center">
+    
+    <!-- Titre avec ombrage pour lisibilité -->
+    <h2 class="text-5xl font-extrabold mb-4 text-gray-800 drop-shadow-lg animate-fade-in">
+         Rejoignez la communauté Mandingue-Chic 
+    </h2>
+
+    <!-- Sous-texte en plus foncé -->
+    <p class="text-gray-700 text-lg font-semibold">Recevez nos offres exclusives et découvrez les dernières tendances.</p>
+
+    <!-- Formulaire stylisé -->
+    <form class="mt-6 flex justify-center">
+        <input type="email" placeholder="Votre email" 
+               class="px-6 py-3 w-80 text-gray-800 border border-gray-400 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-yellow-500">
+        
+        <button class="bg-yellow-500 text-black font-bold px-6 py-3 rounded-r-lg hover:bg-yellow-600 transition duration-300 shadow-md hover:shadow-lg">
+            S'inscrire
+        </button>
+    </form>
+</section>
+
+{% endblock %}

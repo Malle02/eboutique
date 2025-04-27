@@ -1,0 +1,135 @@
+{# 
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Votre Panier - Mandingue-Chic{% endblock %}
+
+{% block body %}
+    <section class="text-black py-16 text-center">
+        <h1 class="text-5xl font-bold mb-6 text-white mt-8">🛒 Votre Panier</h1>
+
+        {% if cart|length == 0 %}
+            <p class="text-black-600 text-lg">Votre panier est vide.</p>
+        {% else %}
+            <div class="overflow-x-auto">
+                <table class="w-full max-w-4xl mx-auto border-collapse bg-white shadow-md rounded-lg overflow-hidden">
+                    <thead class="bg-yellow-500 text-white">
+                        <tr>
+                            <th class="py-3 px-6">Produit</th>
+                            <th class="py-3 px-6">Quantité</th>
+                            <th class="py-3 px-6">Prix Unitaire</th>
+                            <th class="py-3 px-6">Total</th>
+                            <th class="py-3 px-6">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in cart %}
+                            <tr class="border-b hover:bg-gray-100 transition">
+                           
+                            <td class="py-3 px-6">
+                             {{ item.product.name }}
+                                <img src="{{ asset('uploads/products/' ~ item.product.image) }}" alt="{{ item.product.name }}"
+                                    class="h-5 w-5 object-cover rounded shadow">
+                            </td>
+                                
+                                <td class="py-3 px-6">{{ item.quantity }}</td>
+                                <td class="py-3 px-6">{{ (item.product.price / 100)|number_format(2, ',', ' ') }} €</td>
+                                <td class="py-3 px-6">{{ ((item.product.price * item.quantity)/100)|number_format(2, ',', ' ')  }} €</td>
+                                <td class="py-3 px-6">
+                                    <a href="{{ path('cart_add', {id: item.product.id}) }}" class="text-green-500 text-xl">➕</a>
+                                    <a href="{{ path('cart_decrease', {id: item.product.id}) }}" class="text-yellow-500 text-xl">➖</a>
+                                    <a href="{{ path('cart_remove', {id: item.product.id}) }}" class="text-red-500 text-xl">❌</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            
+            <h3 class="text-2xl font-bold mt-6 ">Total : <span class="text-yellow-500">{{ (total /100)|number_format(2, ',', ' ') }} €</span></h3>
+            <a href="{{ path('order_confirm') }}" class="mt-4 inline-block bg-yellow-500 text-black font-semibold py-3 px-6 rounded-lg shadow-lg hover:bg-yellow-600 hover:shadow-xl transition">
+                Passer commande
+            </a>
+        {% endif %}
+    </section>
+{% endblock %} #}
+
+
+
+
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Votre Panier - Mandingue-Chic{% endblock %}
+
+{% block body %}
+    <section class="py-16">
+        <div class="max-w-4xl mx-auto px-6">
+            <h1 class="text-5xl font-bold mb-6 text-white text-center mt-8">🛒 Votre Panier</h1>
+
+            {% if cart|length == 0 %}
+                <div class="bg-white rounded-lg shadow-lg p-8 text-center">
+                    <p class="text-gray-600 text-lg">Votre panier est vide.</p>
+                    <a href="{{ path('product_list') }}" class="mt-4 inline-block bg-yellow-500 text-black font-semibold py-3 px-6 rounded-lg shadow-lg hover:bg-yellow-600 hover:shadow-xl transition">
+                        Continuer mes achats
+                    </a>
+                </div>
+            {% else %}
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <table class="w-full border-collapse">
+                        <thead class="bg-yellow-500 text-white">
+                            <tr>
+                                <th class="py-3 px-6 text-left">Produit</th>
+                                <th class="py-3 px-6 text-center">Quantité</th>
+                                <th class="py-3 px-6 text-right">Prix Unitaire</th>
+                                <th class="py-3 px-6 text-right">Total</th>
+                                <th class="py-3 px-6 text-center">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in cart %}
+                                <tr class="border-b hover:bg-gray-50 transition">
+                                    <td class="py-4 px-6">
+                                        <div class="flex items-center space-x-4">
+                                            <img src="{{ asset('uploads/products/' ~ item.product.image) }}" alt="{{ item.product.name }}"
+                                                class="h-16 w-16 object-cover rounded shadow">
+                                            <span class="font-medium text-gray-900">{{ item.product.name }}</span>
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-6 text-center text-gray-800">{{ item.quantity }}</td>
+                                    <td class="py-4 px-6 text-right text-gray-800">{{ (item.product.price / 100)|number_format(2, ',', ' ') }} €</td>
+                                    <td class="py-4 px-6 text-right font-semibold text-gray-900">{{ ((item.product.price * item.quantity)/100)|number_format(2, ',', ' ')  }} €</td>
+                                    <td class="py-4 px-6 text-center">
+                                        <div class="flex justify-center space-x-2">
+                                            <a href="{{ path('cart_add', {id: item.product.id}) }}" class="bg-green-100 hover:bg-green-200 text-green-600 p-2 rounded-full transition">➕</a>
+                                            <a href="{{ path('cart_decrease', {id: item.product.id}) }}" class="bg-yellow-100 hover:bg-yellow-200 text-yellow-600 p-2 rounded-full transition">➖</a>
+                                            <a href="{{ path('cart_remove', {id: item.product.id}) }}" class="bg-red-100 hover:bg-red-200 text-red-600 p-2 rounded-full transition">❌</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- Section Total améliorée -->
+                <div class="mt-8 bg-white rounded-lg shadow-lg p-6">
+                    <div class="flex justify-between items-center border-b border-gray-200 pb-4">
+                        <span class="text-lg font-medium text-gray-700">Sous-total</span>
+                        <span class="text-lg font-semibold text-gray-900">{{ (total /100)|number_format(2, ',', ' ') }} €</span>
+                    </div>
+                    <div class="flex justify-between items-center pt-4">
+                        <span class="text-xl font-bold text-gray-900">Total</span>
+                        <span class="text-2xl font-bold text-yellow-500">{{ (total /100)|number_format(2, ',', ' ') }} €</span>
+                    </div>
+                    
+                    <div class="mt-6 text-center">
+                        <a href="{{ path('order_confirm') }}" class="inline-block bg-yellow-500 text-black font-semibold py-3 px-8 rounded-lg shadow-lg hover:bg-yellow-600 hover:shadow-xl transition">
+                            Passer commande
+                        </a>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </section>
+{% endblock %}

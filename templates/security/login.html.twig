@@ -1,0 +1,52 @@
+
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion - Mandingue-Chic{% endblock %}
+
+{% block body %}
+    <section class="py-16 flex justify-center mt-8">
+        <div class="w-full max-w-md bg-white p-8 rounded-lg shadow-lg">
+            <h1 class="text-4xl font-bold text-center text-gray-800">🔑 Connexion</h1>
+            
+            {% if error %}
+    <div class="bg-red-500 text-white p-4 rounded-lg mb-4 text-center">
+        ⚠️ {{ error.messageKey|trans(error.messageData, 'security') }}
+    </div>
+{% endif %}
+
+            <p class="text-center text-gray-600 mb-6">Accédez à votre espace personnel.</p>
+
+
+            <form method="post" class="space-y-6">
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                <div class="space-y-4">
+                    <!-- Champ Email -->
+                    <div>
+                        <label for="email" class="block text-gray-700 font-semibold">Email</label>
+                        <input type="email" id="email" name="email" value="{{ last_username }}" required autofocus
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:outline-none text-gray-900 bg-white placeholder-gray-400"
+                               placeholder="Entrez votre email">
+                    </div>
+
+                    <!-- Champ Mot de passe -->
+                    <div>
+                        <label for="password" class="block text-gray-700 font-semibold">Mot de passe</label>
+                        <input type="password" id="password" name="password" required
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:outline-none text-gray-900 bg-white placeholder-gray-400"
+                               placeholder="Votre mot de passe">
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full bg-yellow-500 text-black font-bold py-3 px-6 rounded-lg mt-4 hover:bg-yellow-600 transition duration-300">
+                    Se connecter 🚀
+                </button>
+            </form>
+
+            <p class="text-center text-gray-600 mt-4">
+                Pas encore de compte ? <a href="{{ path('app_register') }}" class="text-yellow-500 font-bold hover:underline">Inscrivez-vous</a>
+            </p>
+        </div>
+    </section>
+{% endblock %}

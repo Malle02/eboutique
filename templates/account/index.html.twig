@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon Compte - Mandingue-Chic{% endblock %}
+
+{% block body %}
+<section class="py-16">
+    <div class="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-lg">
+        <h1 class="text-4xl font-bold text-center mb-6 text-black">👤 Mon Compte</h1>
+        
+        <div class="text-lg text-black">
+            <p><strong>Nom :</strong> {{ user.name }}</p>
+            <p><strong>Email :</strong> {{ user.email }}</p>
+            <p><strong>Addresse :</strong> {{ user.address }}</p>
+            <p><strong>Téléphone :</strong> {{ user.phone }}</p>
+        </div>
+
+        <!-- 🔑 Changer mot de passe -->
+        <div class="mt-6 text-center">
+            <a href="#" class="text-yellow-500 font-semibold hover:underline">🔒 Modifier mon mot de passe</a>
+        </div>
+
+        <!-- 📦 Historique des commandes -->
+        <h2 class="text-2xl font-bold mt-10 mb-4 text-black">📦 Mes Commandes</h2>
+        {% if orders %}
+            <table class="w-full border-collapse border border-gray-200 text-black" >
+                <thead>
+                    <tr class="bg-gray-100">
+                        <th class="p-3 border">Date</th>
+                        <th class="p-3 border">Total</th>
+                        <th class="p-3 border">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in orders %}
+                        <tr class="text-center">
+                            <td class="p-3 border">{{ order.date|date('d/m/Y H:i') }}</td>
+                            <td class="p-3 border">{{ (order.total / 100)|number_format(2, ',', ' ') }} €</td>
+                            <td class="p-3 border">
+                                <span class="px-3 py-1 rounded-lg {% if order.status == 'validée' %}bg-green-500 text-white{% else %}bg-yellow-500 text-black{% endif %}">
+                                    {{ order.status|capitalize }}
+                                </span>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p class="text-gray-600">Aucune commande pour le moment.</p>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

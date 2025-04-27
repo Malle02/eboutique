@@ -1,0 +1,32 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th>Produit</th>
+            <th>Prix unitaire</th>
+            <th>Quantité</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in field.value %}
+            <tr>
+                <td>
+                    {% if item.product.image %}
+                        <img src="{{ asset('uploads/products/' ~ item.product.image) }}" 
+                             alt="{{ item.product.name }}" width="50" class="mr-2">
+                    {% endif %}
+                    {{ item.product.name }}
+                </td>
+                <td>{{ (item.price / 100)|number_format(2, ',', ' ') }} €</td>
+                <td>{{ item.quantity }}</td>
+                <td>{{ ((item.price * item.quantity) / 100)|number_format(2, ',', ' ') }} €</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3" class="text-right"><strong>Total:</strong></td>
+            <td><strong>{{ (field.value|reduce((total, item) => total + (item.price * item.quantity), 0) / 100)|number_format(2, ',', ' ') }} €</strong></td>
+        </tr>
+    </tfoot>
+</table>
