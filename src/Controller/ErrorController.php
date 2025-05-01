@@ -20,7 +20,6 @@ class ErrorController extends AbstractController
             ]);
         }
         
-        // Pour les autres erreurs, utilisez un template générique
         return $this->render('bundles/TwigBundle/Exception/error.html.twig', [
             'status_code' => $statusCode,
             'status_text' => isset(Response::$statusTexts[$statusCode]) ? Response::$statusTexts[$statusCode] : 'Erreur'

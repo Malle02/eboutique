@@ -19,7 +19,7 @@ class RegistrationController extends AbstractController
         Request $request, 
         UserPasswordHasherInterface $userPasswordHasher, 
         EntityManagerInterface $entityManager,
-        ValidatorInterface $validator  // Ajout du validateur
+        ValidatorInterface $validator  
     ): Response {
         if ($this->getUser()) {
             return $this->redirectToRoute('home');
@@ -29,18 +29,16 @@ class RegistrationController extends AbstractController
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
-        // 🔴 Vérification des erreurs de validation
         if ($form->isSubmitted()) {
             if (!$form->isValid()) {
-                // 🔴 DEBUG : Afficher les erreurs pour voir ce qui est détecté
                 foreach ($form->getErrors(true) as $error) {
-                    dump($error->getMessage()); // Symfony var_dump pour voir les erreurs dans la debug bar
+                    dump($error->getMessage()); 
                 }
             }
             $existingUser = $entityManager->getRepository(User::class)->findOneBy(['email' => $user->getEmail()]);
             if ($existingUser) {
                 $this->addFlash('error', 'Un compte avec cet email existe déjà.');
-                return $this->redirectToRoute('app_register'); // Redirection pour afficher le message
+                return $this->redirectToRoute('app_register');
             }
 
             $phone = $form->get('phone')->getData();

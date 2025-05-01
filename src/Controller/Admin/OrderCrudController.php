@@ -1,36 +1,5 @@
 <?php
 
-// namespace App\Controller\Admin;
-
-// use App\Entity\Order;
-// use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-// use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
-// use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
-// use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
-
-// class OrderCrudController extends AbstractCrudController
-// {
-//     public static function getEntityFqcn(): string
-//     {
-//         return Order::class;
-//     }
-
-//     public function configureFields(string $pageName): iterable
-//     {
-//         return [
-//             TextField::new('orderNumber', 'Numéro de commande'),
-//             DateTimeField::new('date', 'Date de commande'),
-//             TextField::new('status', 'Statut'),
-//             AssociationField::new('user', 'Client'),
-//         ];
-//     }
-// }
-
-
-
-
-
-
 namespace App\Controller\Admin;
 
 use App\Entity\Order;
@@ -91,10 +60,9 @@ class OrderCrudController extends AbstractCrudController
                 ->setFormTypeOption('disabled', true),
         ];
 
-        // Afficher les détails de commande uniquement sur la page de détail
         if ($pageName === Crud::PAGE_DETAIL) {
             $fields[] = CollectionField::new('orderItems', 'Produits commandés')
-                ->setTemplatePath('admin/order_items.html.twig'); // Template personnalisé pour afficher les items
+                ->setTemplatePath('admin/order_items.html.twig'); 
         }
 
         return $fields;
@@ -113,10 +81,7 @@ class OrderCrudController extends AbstractCrudController
 
     public function generateInvoice(AdminUrlGenerator $adminUrlGenerator): Response
     {
-        // Logique pour générer une facture PDF
-        // ...
-
-        // Pour l'instant, on redirige vers la page de détail
+        
         $entityId = $this->getContext()->getRequest()->query->get('entityId');
         
         return $this->redirect(

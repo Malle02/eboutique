@@ -14,7 +14,7 @@ class HomeController extends AbstractController
     public function index(ProductRepository $productRepository, CategoryRepository $categoryRepository): Response
     {
         
-    //     $products = $productRepository->findBy([], ['id' => 'DESC'], 4); // Derniers 4 produits
+    //     $products = $productRepository->findBy([], ['id' => 'DESC'], 4); 
 
     //     return $this->render('home/index.html.twig', [
     //         'products' => $products
@@ -24,7 +24,6 @@ class HomeController extends AbstractController
 
     $featuredProducts = $productRepository->findFeaturedProducts(6);
         
-        // Récupérer les catégories principales
         $categories = $categoryRepository->findBy([], ['name' => 'ASC'], 3);
 
         return $this->render('home/index.html.twig', [

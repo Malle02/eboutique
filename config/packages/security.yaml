@@ -26,23 +26,14 @@ security:
                 
 
                 
-
-    # access_control:
-    #     - { path: ^/cart, roles: ROLE_USER }
-    #     - { path: ^/order, roles: ROLE_USER }
-    #     # - { path: ^/$, roles: ROLE_USER }
-    #     - { path: ^/admin, roles: ROLE_ADMIN }
-
-  
     role_hierarchy:
-        # Supprimez toute hiérarchie entre ROLE_ADMIN et ROLE_USER
+       
     
     access_control:
         - { path: ^/cart, roles: ROLE_USER }
         - { path: ^/order, roles: ROLE_USER }
         - { path: ^/mon-compte, roles: ROLE_USER }
         - { path: ^/admin, roles: ROLE_ADMIN }
-        # Interdire l'accès au frontend pour les admins
         - { path: ^/, roles: [IS_AUTHENTICATED_ANONYMOUSLY, ROLE_USER], allow_if: "!is_granted('ROLE_ADMIN')" }
 
 when@test:

@@ -26,7 +26,7 @@ class CategoryController extends AbstractController
         // $products = $productRepository->findBy(['category' => $category]);
         $categories = $categoryRepository->findAll();
         $page = $request->query->getInt('page', 1);
-        $limit = 6; // 9 produits par page
+        $limit = 6; 
 
         $query = $entityManager->createQuery('
         SELECT p FROM App\Entity\Product p

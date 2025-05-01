@@ -56,7 +56,6 @@ class UserCrudController extends AbstractCrudController
     {
         return $actions
             ->add(Crud::PAGE_INDEX, Action::DETAIL)
-            // Utiliser une expression de sécurité
             ->setPermission(
                 Action::DELETE, 
                 "not is_granted('ROLE_ADMIN')"

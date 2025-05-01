@@ -41,10 +41,8 @@ class SecurityController extends AbstractController
     #[Route('/admin/logout', name: 'admin_logout')]
     public function adminLogout(Security $security): Response
     {
-        // Cette méthode sera utilisée par les administrateurs
         $security->logout(false);
         
-        // Redirection vers la page de connexion après déconnexion
         return $this->redirectToRoute('app_login');
     }
 }

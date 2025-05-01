@@ -42,7 +42,6 @@
 <section class="py-16 text-center">
     <h1 class="text-5xl font-bold mb-8">🛍️ Notre Collection</h1>
 
-    <!-- 📌 Filtres par catégorie -->
     <div class="mb-10 bg-gradient-to-b text-black from-[#f8f1e1] to-[#e2c799]">
         <ul class="flex flex-wrap justify-center space-x-4 text-lg font-bold">
             <li>
@@ -60,25 +59,21 @@
         </ul>
     </div>
 
-    <!-- 🏆 Grille des produits -->
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8 px-10">
         {% for product in products %}
             <div class="bg-white rounded-lg shadow-lg p-6 text-center transform transition duration-300 hover:scale-105 hover:shadow-2xl group">
                 
-                <!-- 📸 Image produit avec hover zoom -->
                 <div class="overflow-hidden rounded-md">
                     <img src="{{ asset('uploads/products/' ~ product.image) }}" alt="{{ product.name }}"
                          class="w-full h-64 object-cover rounded-md transition-transform duration-300 group-hover:scale-110">
                 </div>
 
-                <!-- 📝 Nom & prix -->
                 <h3 class="text-2xl font-bold mt-4 text-gray-800 group-hover:text-yellow-500 transition duration-300">
                     {{ product.name }}
                 </h3>
 
                 <p class="text-gray-600 text-lg mt-2">{{ (product.price / 100)|number_format(2, ',', ' ') }} €</p>
 
-                <!-- 🛍️ Bouton CTA -->
                 <a href="{{ path('product_detail', {id: product.id}) }}"
                    class="block bg-yellow-500 text-black font-semibold py-3 px-6 rounded-lg mt-4 hover:bg-yellow-600 transition duration-300">
                     Voir détails 🔍
@@ -91,7 +86,6 @@
 
     
 </section>
- <!-- Pagination -->
     {% if pagesCount > 1 %}
     <div class="mt-12  py-16 bg-gradient-to-b from-[#f8f1e1] to-[#e2c799] text-center">
         <nav class="flex justify-center">

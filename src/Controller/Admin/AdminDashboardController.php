@@ -34,14 +34,7 @@ class AdminDashboardController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
-    //     return [
-    //         MenuItem::linkToDashboard('Tableau de Bord', 'fa fa-home'),
-    //         MenuItem::linkToCrud('Produits', 'fas fa-tshirt', Product::class),
-    //         MenuItem::linkToCrud('Catégories', 'fas fa-tags', Category::class),
-    //         MenuItem::linkToCrud('Commandes', 'fas fa-shopping-cart', Order::class),
-    //         MenuItem::linkToLogout('Déconnexion', 'fas fa-sign-out-alt'),
-    //     ];
-    // }
+
 
     return [
         MenuItem::linkToDashboard('Tableau de Bord', 'fa fa-home'),
@@ -49,8 +42,8 @@ class AdminDashboardController extends AbstractDashboardController
         MenuItem::linkToCrud('Catégories', 'fas fa-tags', Category::class),
         MenuItem::linkToCrud('Commandes', 'fas fa-shopping-cart', Order::class),
         MenuItem::section('Utilisateurs'),
-        MenuItem::linkToCrud('Clients', 'fas fa-users', User::class), // Ajoutez une gestion des utilisateurs
-        MenuItem::section(), // Séparateur
+        MenuItem::linkToCrud('Clients', 'fas fa-users', User::class), 
+        MenuItem::section(), 
         MenuItem::linkToRoute('Déconnexion', 'fas fa-sign-out-alt', 'admin_logout'),
         
     ];

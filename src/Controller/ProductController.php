@@ -18,7 +18,7 @@ class ProductController extends AbstractController
         $categories = $categoryRepository->findAll(); 
 
         $page = $request->query->getInt('page', 1);
-        $limit = 6; // 9 produits par page (3x3 grid)
+        $limit = 6; 
         $pagination = $productRepository->findPaginated($page, $limit);
         return $this->render('product/list.html.twig', [
             // 'products' => $products,
@@ -39,13 +39,13 @@ class ProductController extends AbstractController
             throw $this->createNotFoundException('Produit introuvable.');
         }
 
-        // Récupérer les produits similaires
+       
     $relatedProducts = $productRepository->createQueryBuilder('p')
     ->where('p.category = :category')
-    ->andWhere('p.id != :currentProduct') // Exclure le produit actuel
+    ->andWhere('p.id != :currentProduct')
     ->setParameter('category', $product->getCategory())
     ->setParameter('currentProduct', $product->getId())
-    ->setMaxResults(4) // Limiter à 4 produits similaires
+    ->setMaxResults(4) 
     ->getQuery()
     ->getResult();
 

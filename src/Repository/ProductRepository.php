@@ -17,13 +17,7 @@ class ProductRepository extends ServiceEntityRepository
         parent::__construct($registry, Product::class);
     }
 
-     /**
-     * Récupère les produits avec pagination
-     * 
-     * @param int $page La page demandée (commence à 1)
-     * @param int $limit Nombre d'éléments par page
-     * @return array [produits paginés, nombre total de produits]
-     */
+
     public function findPaginated(int $page = 1, int $limit = 9): array
     {
         $query = $this->createQueryBuilder('p')
