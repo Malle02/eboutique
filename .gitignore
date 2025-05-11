@@ -7,6 +7,10 @@
 /var/
 /vendor/
 .env
+
+.env
+.env.local
+.env.*local
 ###< symfony/framework-bundle ###
 
 ###> phpunit/phpunit ###
