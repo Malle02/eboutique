@@ -35,9 +35,6 @@ Node.js 18+ et npm
 
 Cloner le dépôt
 
-git clone https://github.com/votre-utilisateur/mandingue-chic.git
-cd mandingue-chic
-
 Installer les dépendances PHP
 
 composer install
