@@ -1,0 +1,106 @@
+Mandingue-Chic - Boutique en Ligne Symfony 6
+
+À propos du projet
+Mandingue-Chic  une boutique inspirés de la culture mandingue. Développée avec Symfony 6 et Tailwind CSS, 
+
+
+Fonctionnalités
+
+🛍️ Catalogue de produits avec catégories
+🔍 Filtrage des produits par catégorie
+🛒 Panier d'achat
+👤 Gestion des comptes utilisateurs
+📦 Suivi des commandes
+👨‍💼 Interface d'administration avec EasyAdmin
+📱 Design responsive avec Tailwind CSS
+
+Technologies utilisées
+
+Backend: Symfony 6.4
+Frontend: Tailwind CSS 4.0
+Base de données: MySQL 8.0
+Administration: EasyAdmin Bundle
+Build: Webpack Encore
+Serveur: AlwaysData
+
+Installation locale
+Prérequis
+
+PHP 8.1 ou supérieur
+Composer
+MySQL
+Node.js 18+ et npm
+
+Étapes d'installation
+
+Cloner le dépôt
+
+git clone https://github.com/votre-utilisateur/mandingue-chic.git
+cd mandingue-chic
+
+Installer les dépendances PHP
+
+composer install
+
+Installer les dépendances JavaScript
+
+npm install
+
+Configurer la base de données
+
+Créez un fichier .env.local à la racine du projet et configurez votre connexion à la base de données :
+DATABASE_URL="mysql://utilisateur:mot_de_passe@127.0.0.1:3306/nom_de_la_base?serverVersion=8.0"
+
+Créer la base de données et appliquer les migrations
+
+php bin/console doctrine:database:create
+php bin/console doctrine:migrations:migrate
+
+
+
+Compiler les assets
+
+npm run build
+
+Lancer le serveur de développement
+
+symfony serve
+
+ http://localhost:8000
+
+
+
+Administration
+L'accès à l'administration se fait via /admin avec un compte administrateur.
+Les fonctionnalités d'administration comprennent :
+
+Gestion des produits et catégories
+Suivi des commandes
+Gestion des utilisateurs
+
+
+Développé par Mallé TRAORE 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

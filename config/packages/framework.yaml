@@ -7,7 +7,7 @@ framework:
     session:
         handler_id: session.handler.native_file
         save_path: '%kernel.project_dir%/var/sessions/%kernel.environment%'
-        cookie_lifetime: 86400    # 24 heures en secondes
+        cookie_lifetime: 86400   
         gc_maxlifetime: 86400
 
 when@test:
